@@ -32,6 +32,34 @@ Compatibility
 ===
 Of course, not all vehicles around are implementing the ISO 9141 standard so this library might not work for your vehicle. Before OBD2, interfaces were manufacturer specific implemented so you'd rather look into your manufacturers implementation details and extend the library by yourself.
 
+Troubleshooting
+===
+
+### [Why would ch341-uart be disconnected from ttyUSB?](https://stackoverflow.com/questions/70123431/why-would-ch341-uart-be-disconnected-from-ttyusb)
+
+When connecting USB OBD device, `dmesg` gives output similar to:
+
+```bash
+[679413.370685] usb 1-2.4.3: USB disconnect, device number 10
+[679417.176663] usb 1-2.4.3: new full-speed USB device number 11 using xhci_hcd
+[679417.298905] usb 1-2.4.3: New USB device found, idVendor=1a86, idProduct=7523, bcdDevice= 2.64
+[679417.298915] usb 1-2.4.3: New USB device strings: Mfr=0, Product=2, SerialNumber=0
+[679417.298919] usb 1-2.4.3: Product: USB Serial
+[679417.337967] ch341 1-2.4.3:1.0: ch341-uart converter detected
+[679417.352141] usb 1-2.4.3: ch341-uart converter now attached to ttyUSB0
+[679417.890411] input: BRLTTY 6.4 Linux Screen Driver Keyboard as /devices/virtual/input/input16
+[679417.895881] usb 1-2.4.3: usbfs: interface 0 claimed by ch341 while 'brltty' sets config #1
+[679417.899018] ch341-uart ttyUSB0: ch341-uart converter now disconnected from ttyUSB0
+[679417.899038] ch341 1-2.4.3:1.0: device disconnected
+```
+
+The device should be connected to `ttyUSB0` but has been disconnected.  Per the referenced article:
+
+```text
+For Ubuntu 22.04 (Jammy Jellyfish), the simplest solution is to remove the package brltty via 
+`sudo apt remove brltty`, since it''s unnecessary unless you''re using a braille e-reader.  
+However, I am unsure if it could cause errors later on.
+```
 
 License
 ===

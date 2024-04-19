@@ -28,9 +28,12 @@ public sealed class Program : IDisposable
     {
       // get the current (real-time) speed of the vehicle given in km/h:
       var speed = Vehicle.Speed(conn);
-      
-      Console.WriteLine($"  Speed: {speed} km/hr");
-      
+
+      // get the current (real-time) engine RPM:
+      var rpm = Vehicle.RPM(conn);
+
+      Console.WriteLine($"  Speed: {speed} km/hr @ {rpm} RPM");
+
       Thread.Sleep(TimeSpan.FromSeconds(1));
     }
 

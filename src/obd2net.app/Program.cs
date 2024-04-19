@@ -37,7 +37,7 @@ public sealed class Program : IDisposable
       Thread.Sleep(TimeSpan.FromSeconds(1));
     }
 
-    Console.WriteLine($"  Cancellation requested  [{Thread.CurrentThread.ManagedThreadId}]...");
+    Console.WriteLine($"  Cancellation requested");
   }
 
   private void ConsoleOnCancelKeyPress(object? sender, ConsoleCancelEventArgs e)

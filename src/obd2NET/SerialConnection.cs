@@ -1,8 +1,7 @@
-﻿using System;
-using System.IO.Ports;
-using System.Threading;
+﻿namespace obd2NET;
 
-namespace obd2NET;
+using System;
+using System.Threading;
 
 /// <summary>
 /// Represents the serial connection to the vehicle's interface
@@ -12,19 +11,19 @@ public class SerialConnection : IOBDConnection
   /// <summary>
   /// Port used for communicating with the vehicle's interface
   /// </summary>
-  public SerialPort Port { get; set; }
+  public IObdSerialPort Port { get; set; }
 
   public SerialConnection() :
-    this(new SerialPort())
+    this(new ObdSerialPort())
   {
   }
 
   public SerialConnection(string comPort) :
-    this(new SerialPort(comPort))
+    this(new ObdSerialPort(comPort))
   {
   }
 
-  public SerialConnection(SerialPort port)
+  public SerialConnection(IObdSerialPort port)
   {
     Port = port;
     Open();

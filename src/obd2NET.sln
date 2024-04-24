@@ -7,6 +7,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "obd2NET", "obd2NET\obd2NET.
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "obd2net.app", "obd2net.app\obd2net.app.csproj", "{C48228BE-0B5C-4F98-99E1-1EAA1A929F17}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "obd2NET.Tests", "obd2NET.Tests\obd2NET.Tests.csproj", "{7A561642-DA34-4F49-BA6E-D668F8E3BEAE}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -21,6 +23,10 @@ Global
 		{C48228BE-0B5C-4F98-99E1-1EAA1A929F17}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{C48228BE-0B5C-4F98-99E1-1EAA1A929F17}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{C48228BE-0B5C-4F98-99E1-1EAA1A929F17}.Release|Any CPU.Build.0 = Release|Any CPU
+		{7A561642-DA34-4F49-BA6E-D668F8E3BEAE}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{7A561642-DA34-4F49-BA6E-D668F8E3BEAE}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{7A561642-DA34-4F49-BA6E-D668F8E3BEAE}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{7A561642-DA34-4F49-BA6E-D668F8E3BEAE}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

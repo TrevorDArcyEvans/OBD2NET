@@ -75,4 +75,19 @@ public sealed class Vehicle_Tests
 
     res.Should().Be(exp);
   }
+
+  [Test]
+  public void Calculated_engine_load_value_returns_expected([Values(40u, 0u, 30u, 95u, 100u)] uint exp)
+  {
+    var expStr = ((int)Math.Round(exp / 100d * 255d)).ToString("x2");
+    var dataStr = $"\n01 04 {expStr} \r\n>";
+    var data = new List<byte>(Encoding.Default.GetBytes(dataStr));
+
+    _port.Setup(x => x.Read(It.IsAny<byte[]>(), 0, 1024))
+      .Callback<byte[], int, int>((buffer, offset, count) => { data.CopyTo(buffer, 0); });
+
+    var res = Vehicle.CalculatedEngineLoadValue(_serConn);
+
+    res.Should().Be(exp);
+  }
 }

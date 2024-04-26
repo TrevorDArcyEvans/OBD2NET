@@ -1,13 +1,11 @@
 namespace obd2NET.Tests;
 
-using Moq;
-
 [TestFixture]
-public class Vehicle_Tests
+public sealed class Vehicle_Tests
 {
   private Mock<IObdSerialPort> _port;
   public SerialConnection _serConn;
-  
+
   [SetUp]
   public void Setup()
   {
@@ -18,6 +16,14 @@ public class Vehicle_Tests
   [Test]
   public void Speed_returns_expected()
   {
-    Assert.Pass();
+    var dataStr = "\n01 0d 32 \r\n>";
+    var data = new List<byte>(Encoding.Default.GetBytes(dataStr));
+
+    _port.Setup(x => x.Read(It.IsAny<byte[]>(), 0, 1024))
+      .Callback<byte[], int, int>((buffer, offset, count) => { data.CopyTo(buffer, 0); });
+
+    var res = Vehicle.Speed(_serConn);
+
+    res.Should().Be(50);
   }
 }

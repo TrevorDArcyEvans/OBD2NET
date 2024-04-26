@@ -107,4 +107,22 @@ public sealed class Vehicle_Tests
     // so have to allow some leeway
     res.Should().BeCloseTo(exp, 1);
   }
+
+  [Test]
+  public void Malfunction_indicator_lamp_returns_expected([Values(true, false)] bool exp)
+  {
+    var dataA = (exp ? 128 : 127).ToString("x2");
+    var dataB = 112.ToString("x2");
+    var dataC = 157.ToString("x2");
+    var dataD = 32.ToString("x2");
+    var dataStr = $"\n01 01 {dataA} {dataB} {dataC} {dataD} \r\n>";
+    var data = new List<byte>(Encoding.Default.GetBytes(dataStr));
+
+    _port.Setup(x => x.Read(It.IsAny<byte[]>(), 0, 1024))
+      .Callback<byte[], int, int>((buffer, offset, count) => { data.CopyTo(buffer, 0); });
+
+    var res = Vehicle.MalfunctionIndicatorLamp(_serConn);
+
+    res.Should().Be(exp);
+  }
 }

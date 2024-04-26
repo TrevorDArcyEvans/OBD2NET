@@ -46,7 +46,7 @@ public static class Vehicle
   public static uint Speed(IOBDConnection obdConnection)
   {
     var response = obdConnection.Query(Mode.CurrentData, PID.Speed);
-    if (response.HasValidData())
+    if (response.HasInvalidData())
     {
       throw new QueryException("Vehicle speed couldn't be queried, the controller returned no data");
     }
@@ -63,7 +63,7 @@ public static class Vehicle
   public static int EngineTemperature(IOBDConnection obdConnection)
   {
     var response = obdConnection.Query(Mode.CurrentData, PID.EngineTemperature);
-    if (response.HasValidData())
+    if (response.HasInvalidData())
     {
       throw new QueryException("Engine temperature couldn't be queried, the controller returned no data");
     }
@@ -80,7 +80,7 @@ public static class Vehicle
   public static uint RPM(IOBDConnection obdConnection)
   {
     var response = obdConnection.Query(Mode.CurrentData, PID.RPM);
-    if (response.HasValidData())
+    if (response.HasInvalidData())
     {
       throw new QueryException("RPM couldn't be queried, the controller returned no data");
     }
@@ -101,7 +101,7 @@ public static class Vehicle
   public static uint ThrottlePosition(IOBDConnection obdConnection)
   {
     var response = obdConnection.Query(Mode.CurrentData, PID.ThrottlePosition);
-    if (response.HasValidData())
+    if (response.HasInvalidData())
     {
       throw new QueryException("Throttle position couldn't be queried, the controller returned no data");
     }
@@ -118,7 +118,7 @@ public static class Vehicle
   public static uint CalculatedEngineLoadValue(IOBDConnection obdConnection)
   {
     var response = obdConnection.Query(Mode.CurrentData, PID.CalculatedEngineLoadValue);
-    if (response.HasValidData())
+    if (response.HasInvalidData())
     {
       throw new QueryException("Calculated engine load value couldn't be queried, the controller returned no data");
     }
@@ -135,7 +135,7 @@ public static class Vehicle
   public static uint FuelPressure(IOBDConnection obdConnection)
   {
     var response = obdConnection.Query(Mode.CurrentData, PID.FuelPressure);
-    if (response.HasValidData())
+    if (response.HasInvalidData())
     {
       throw new QueryException("Fuel pressure couldn't be queried, the controller returned no data");
     }
@@ -152,7 +152,7 @@ public static class Vehicle
   public static bool MalfunctionIndicatorLamp(IOBDConnection obdConnection)
   {
     var response = obdConnection.Query(Mode.CurrentData, PID.MIL);
-    if (response.HasValidData())
+    if (response.HasInvalidData())
     {
       throw new QueryException("Malfunction indicator lamp couldn't be queried, the controller returned no data");
     }
@@ -174,7 +174,7 @@ public static class Vehicle
   {
     // issue the request for the actual DTCs
     var response = obdConnection.Query(Mode.DiagnosticTroubleCodes);
-    if (response.HasValidData())
+    if (response.HasInvalidData())
     {
       throw new QueryException("Diagnostic trouble codes couldn't be queried, the controller returned no data");
     }

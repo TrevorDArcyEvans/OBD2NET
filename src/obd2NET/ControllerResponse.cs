@@ -39,7 +39,7 @@ public class ControllerResponse
     }
   }
 
-  public bool HasValidData()
+  public bool HasInvalidData()
   {
     return Raw.Contains("NO DATA");
   }

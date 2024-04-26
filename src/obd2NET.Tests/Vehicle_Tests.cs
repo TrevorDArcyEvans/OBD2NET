@@ -90,4 +90,21 @@ public sealed class Vehicle_Tests
 
     res.Should().Be(exp);
   }
+
+  [Test]
+  public void Fuel_pressure_returns_expected([Values(40u, 0u, 199u, 195u, 765u)] uint exp)
+  {
+    var expStr = ((int)Math.Round(exp / 3d)).ToString("x2");
+    var dataStr = $"\n01 0a {expStr} \r\n>";
+    var data = new List<byte>(Encoding.Default.GetBytes(dataStr));
+
+    _port.Setup(x => x.Read(It.IsAny<byte[]>(), 0, 1024))
+      .Callback<byte[], int, int>((buffer, offset, count) => { data.CopyTo(buffer, 0); });
+
+    var res = Vehicle.FuelPressure(_serConn);
+
+    // since dividing by 3, not all values in range [0-765 kPa] are possible
+    // so have to allow some leeway
+    res.Should().BeCloseTo(exp, 1);
+  }
 }

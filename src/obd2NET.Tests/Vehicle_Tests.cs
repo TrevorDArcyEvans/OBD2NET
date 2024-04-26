@@ -4,7 +4,7 @@ namespace obd2NET.Tests;
 public sealed class Vehicle_Tests
 {
   private Mock<IObdSerialPort> _port;
-  public SerialConnection _serConn;
+  private SerialConnection _serConn;
 
   [SetUp]
   public void Setup()

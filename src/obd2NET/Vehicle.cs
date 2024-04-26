@@ -124,7 +124,7 @@ public static class Vehicle
     }
 
     // given in percentage, first value byte *100/255
-    return (response.Value.Length >= 1) ? (Convert.ToUInt32(response.Value.First()) * 100) / 255 : 0;
+    return (response.Value.Length >= 1) ? (uint)Math.Round((Convert.ToUInt32(response.Value.First()) * 100d) / 255d) : 0;
   }
 
   /// <summary>
